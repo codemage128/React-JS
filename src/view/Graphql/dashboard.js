@@ -1,0 +1,60 @@
+import { gql } from '@apollo/client';
+
+export const SEARCH_DATA = gql`query($data: String!){
+   getGetinfo(data: $data){
+      id
+      name
+      ipAddress
+      macAddress
+      model
+      assetType
+      operatingSystem
+      firmwareVersion
+      description
+      isFirmwareScanned
+      discontinued
+      outdated
+      assetVulnerabilitesSet{
+         id
+         scanid
+      }
+      assetOvVulnerabilitesSet{
+         id
+         scanid
+      }
+      assetFirmwaredetailSet{
+         id
+         scanid
+      }
+   }
+}`
+export const ALL_ASSETS = gql`{
+getAllasset{
+   id
+   manufacturer
+   assetType
+   model
+   ipAddress
+   discontinued
+   outdated
+   assetVulnerabilitesSet{
+      id
+      vulid{
+         cveid
+         cvss
+      }
+   }
+   assetOvVulnerabilitesSet{
+      id
+      ovid{
+         severity
+         cveid
+      }
+   }
+   assetFirmwaredetailSet{
+      id
+      fdetailid{
+         vulnerabilities
+      }
+   }
+}}`
